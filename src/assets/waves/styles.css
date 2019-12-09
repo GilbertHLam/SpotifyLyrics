@@ -1,0 +1,174 @@
+
+.placeholder {
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.music {
+    height: 50%;
+}
+
+.soundwave {
+  height: 100%;
+  width: 600%;
+  overflow-y: hidden;
+  animation: slide-left 40s linear infinite;
+}
+
+.freq {
+  width: 8px;
+  border-radius: 8px;
+  margin: 0 1px;
+  background-color: #1e8449;
+  opacity: 50%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.freq.h-100 {
+  height: 100%;
+  animation: beat-100 1s ease infinite;
+  animation-direction: alternate;
+}
+.freq.h-90 {
+  height: 90%;
+  animation: beat-90 1.2s ease-in-out infinite;
+  animation-direction: alternate;
+}
+.freq.h-80 {
+  height: 80%;
+  animation: beat-80 1.2s ease-in-out infinite;
+  animation-direction: alternate;
+}
+.freq.h-70 {
+  height: 70%;
+  animation: beat-70 1s ease-in-out infinite;
+  animation-direction: alternate;
+}
+.freq.h-60 {
+  height: 60%;
+  animation: beat-60 1.2s ease-in-out infinite;
+  animation-direction: alternate;
+}
+.freq.h-50 {
+  height: 50%;
+  animation: beat-50 1.8s ease-in-out infinite;
+  animation-direction: alternate;
+}
+.freq.h-40 {
+  height: 40%;
+  animation: beat-40 0.8s ease-in-out infinite;
+  animation-direction: alternate;
+}
+.freq.h-30 {
+  height: 30%;
+  animation: beat-30 1.2s ease-in-out infinite;
+  animation-direction: alternate;
+}
+.freq.h-20 {
+  height: 20%;
+  animation: beat-20 1.2s ease-in-out infinite;
+  animation-direction: alternate;
+}
+.freq.h-10 {
+  height: 10%;
+  animation: beat-10 1.2s ease-in-out infinite;
+  animation-direction: alternate;
+}
+.freq.h-5 {
+  height: 5%;
+}
+
+@keyframes beat-10 {
+  20% {
+    height: 10%;
+  }
+  100% {
+    height: 8%;
+  }
+}
+@keyframes beat-20 {
+  20% {
+    height: 20%;
+  }
+  100% {
+    height: 16%;
+  }
+}
+@keyframes beat-30 {
+  20% {
+    height: 30%;
+  }
+  100% {
+    height: 22%;
+  }
+}
+@keyframes beat-40 {
+  20% {
+    height: 40%;
+  }
+  100% {
+    height: 32%;
+  }
+}
+@keyframes beat-50 {
+  20% {
+    height: 50%;
+  }
+  100% {
+    height: 40%;
+  }
+}
+@keyframes beat-60 {
+  20% {
+    height: 60%;
+  }
+  100% {
+    height: 48%;
+  }
+}
+@keyframes beat-70 {
+  20% {
+    height: 70%;
+  }
+  100% {
+    height: 56%;
+  }
+}
+@keyframes beat-80 {
+  20% {
+    height: 80%;
+  }
+  100% {
+    height: 64%;
+  }
+}
+@keyframes beat-90 {
+  20% {
+    height: 90%;
+  }
+  100% {
+    height: 72%;
+  }
+}
+@keyframes beat-100 {
+  20% {
+    height: 100%;
+  }
+  100% {
+    height: 80%;
+  }
+}
+@keyframes slide-left {
+  100% {
+    transform: translateX(-10%);
+  }
+}
+
+@media (max-width: 900px) {
+    .soundwave {
+        width: 1200%;
+        animation: slide-left 20s linear infinite;
+    }
+}
+
