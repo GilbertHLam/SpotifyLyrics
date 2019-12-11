@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 
-const LoadingWaves = (props) => {
+const LoadingWaves = props => {
   const generateLoadingBars = () => {
     const array = [];
     for (let i = 0; i < 30; i++) {

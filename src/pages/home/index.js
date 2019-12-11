@@ -28,7 +28,7 @@ const Home = () => {
       </div>
       <Waves />
       <div className="buttonContainer">
-          <LoginButton/>
+        <LoginButton />
       </div>
     </div>
   );

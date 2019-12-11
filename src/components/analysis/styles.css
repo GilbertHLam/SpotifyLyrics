@@ -1,0 +1,15 @@
+.analysisInner {
+  height: 90vh;
+}
+
+.pie {
+  height: 50%;
+}
+
+.bar {
+  height: 50%;
+}
+
+.bar text {
+  fill: white !important;
+}

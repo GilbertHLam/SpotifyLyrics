@@ -28,12 +28,11 @@ const Callback = props => {
       });
   }, []);
 
-  
   return (
     <div className="callback">
       {isLoading ? (
         <>
-          <LoadingWaves message="Logging you in..."/>
+          <LoadingWaves message="Logging you in..." />
         </>
       ) : (
         <Redirect

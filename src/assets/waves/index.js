@@ -6,8 +6,8 @@ const randomNumber = () => {
 };
 
 const randomHeight = () => {
-    return Math.random() * 100 + 5;
-}
+  return Math.random() * 100 + 5;
+};
 
 const Waves = () => {
   return (

@@ -9,7 +9,7 @@
   flex-direction: column;
   text-align: center;
   background-attachment: fixed;
-  padding-bottom: 5%;
+  padding-bottom: 7%;
 }
 
 .loading {
@@ -24,8 +24,9 @@
 
 .container {
   padding: 2% 0;
-  width: 100%;
   text-align: center;
+  min-width: 50%;
+  overflow: scroll;
 }
 
 h1 {
@@ -53,13 +54,14 @@ h1 {
   z-index: -100;
 }
 
-body, #root {
+body,
+#root {
   background: none;
 }
 
 .wrapper {
   position: relative;
-  min-height: 100%;
+  height: 100%;
 }
 
 .background {
@@ -67,8 +69,33 @@ body, #root {
   width: 100%;
 }
 
+.flex {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.analysis {
+  width: 50%;
+}
+
 @media (max-width: 900px) {
-  .lyrics {
+  h1 {
     font-size: 1.5rem;
+  }
+  .lyrics {
+    font-size: 1rem;
+    padding-bottom: 15%;
+    width: 100%;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  .analysis {
+    display: none;
   }
 }

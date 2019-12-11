@@ -36,24 +36,24 @@ container {
 }
 
 .header__dev--open {
-    color: #ffffff10;
+  color: #ffffff10;
 }
 
 .thin {
-    font-weight: 100;
-    margin-left: 16px;
+  font-weight: 100;
+  margin-left: 16px;
 }
 
 .buttonContainer {
-    height: 30%;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: center;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
 }
 
 @media (max-width: 900px) {
-    .header__dev {
-        font-size: 3rem;
-    }
+  .header__dev {
+    font-size: 3rem;
+  }
 }

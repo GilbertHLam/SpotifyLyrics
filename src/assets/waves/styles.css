@@ -1,4 +1,3 @@
-
 .placeholder {
   height: 100%;
   display: inline-block;
@@ -6,7 +5,7 @@
 }
 
 .music {
-    height: 50%;
+  height: 50%;
 }
 
 .soundwave {
@@ -166,9 +165,8 @@
 }
 
 @media (max-width: 900px) {
-    .soundwave {
-        width: 1200%;
-        animation: slide-left 20s linear infinite;
-    }
+  .soundwave {
+    width: 1200%;
+    animation: slide-left 20s linear infinite;
+  }
 }
-
