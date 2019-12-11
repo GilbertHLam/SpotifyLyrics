@@ -23,6 +23,7 @@ const Callback = props => {
           }
         });
         localStorage.setItem("accessToken", response.accessToken);
+        localStorage.setItem("cachedAt", new Date().toString());
         setIsLoading(false);
       });
   }, []);

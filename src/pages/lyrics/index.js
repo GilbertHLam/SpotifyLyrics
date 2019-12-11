@@ -3,6 +3,7 @@ import "./styles.css";
 import { getLyrics, checkState } from "../../utils/apiCalls";
 import { useStateValue } from "../../state";
 import LoadingWaves from "../../components/loadingWaves";
+import Player from "../../components/player";
 
 const Lyrics = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -11,12 +12,13 @@ const Lyrics = () => {
   const [watsonAnalysis, setWatsonAnalysis] = useState({});
   const [lyrics, setLyrics] = useState("");
   const [spotifyState, setSpotifyState] = useState({});
-  const [check, setCheck] = useState(false);
+  const [interval, setIntervalFunction] = useState();
 
   const { state } = useStateValue();
 
   useEffect(() => {
-    setInterval(
+    clearInterval(interval);
+    setIntervalFunction(setInterval(
       () => {
         const statePromise = checkState(
           state.credentials
@@ -38,22 +40,42 @@ const Lyrics = () => {
           resolve(setForceFetchLyrics);
         });
 
+        const setSpotifyStatePromise = new Promise(function(resolve, reject) {
+          resolve(setSpotifyState);
+        });
+
         Promise.all([
           statePromise,
           currentStatePromise,
-          setForceFetchPromise
+          setForceFetchPromise,
+          setSpotifyStatePromise
         ]).then(function(values) {
           try {
             if (values[0].item.id !== values[1].songID) {
               values[2](values[0].item.id);
+            } else {
+              if (values[0].item) {
+                const object = {
+                  songID: values[0].item.id,
+                  song_title: values[0].item.name,
+                  artist: values[0].item.artists[0].name,
+                  image_url: values[0].item.album.images[1].url,
+                  length: values[0].item.duration_ms,
+                  is_playing: values[0].is_playing,
+                  current: values[0].progress_ms
+                };
+                values[3](object);
+              }
             }
-          } catch (error) {}
+          } catch (error) {
+
+          }
         });
       },
-      5000,
+      1000,
       spotifyState
-    );
-  }, [spotifyState]);
+    ));
+  }, [spotifyState, setIntervalFunction]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -93,11 +115,10 @@ const Lyrics = () => {
         <div
           className="background-image"
           style={{
-            background: `url(${spotifyState.image_url}) no-repeat center center fixed,linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)) `,
+            background: `url(${spotifyState.image_url}) no-repeat center center fixed,linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)) `,
             backgroundSize: "cover"
           }}
-        >
-        </div>
+        ></div>
         <div className="container">
           <h1>{`${formatString(spotifyState.song_title)} - ${formatString(
             spotifyState.artist
@@ -105,8 +126,9 @@ const Lyrics = () => {
           <div
             className="lyrics"
             dangerouslySetInnerHTML={{ __html: lyrics }}
-          ></div>
+          />
         </div>
+        <Player isPlaying={spotifyState.is_playing} />
       </div>
     </>
   );
