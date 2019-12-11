@@ -3,6 +3,7 @@ import "./styles.css";
 import { callback } from "../../utils/apiCalls";
 import { Redirect } from "react-router-dom";
 import { useStateValue } from "../../state";
+import LoadingWaves from "../../components/loadingWaves";
 
 const Callback = props => {
   const { dispatch } = useStateValue();
@@ -21,29 +22,17 @@ const Callback = props => {
             refreshToken: response.refreshToken
           }
         });
+        localStorage.setItem("accessToken", response.accessToken);
         setIsLoading(false);
       });
   }, []);
 
-  const generateLoadingBars = () => {
-    const array = [];
-    for (let i = 0; i < 30; i++) {
-      array.push(
-        <div
-          key={i}
-          className="loading"
-          style={{ animationDelay: `${(i - 18) * 0.1}s` }}
-        ></div>
-      );
-    }
-    return array;
-  };
+  
   return (
     <div className="callback">
       {isLoading ? (
         <>
-          <div className="loadingSection">{generateLoadingBars()}</div>
-          <h2 className="message">Logging you in....</h2>
+          <LoadingWaves message="Logging you in..."/>
         </>
       ) : (
         <Redirect

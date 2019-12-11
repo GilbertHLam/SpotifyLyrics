@@ -1,5 +1,70 @@
 .lyrics {
+  font-family: Lato, Arial, sans-serif;
+  font-size: 1.2vw;
+  font-weight: 400;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  background-attachment: fixed;
+}
+
+.loading {
   height: 100%;
   width: 100%;
-  background-color: #1b1b1b;
+  background-color: #00000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  text-align: center;
+}
+
+h1 {
+  color: white;
+}
+
+.background-image {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  filter: blur(30px);
+  -webkit-filter: blur(30px);
+  position: fixed;
+  right: 0;
+  height: 100%;
+  transform: scale(1);
+  transition: 3s;
+  -webkit-transition: 3s;
+  -moz-transition: 3s;
+  -o-transition: 3s;
+  position: absolute;
+  left: 0;
+  z-index: -100;
+}
+
+body, #root {
+  background: none;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.background {
+  height: 100%;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .lyrics {
+    font-size: 1.5rem;
+  }
 }

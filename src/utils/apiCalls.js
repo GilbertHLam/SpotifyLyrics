@@ -38,4 +38,15 @@ const getLyrics = accessToken => {
   });
 };
 
-export { login, callback, getLyrics };
+const checkState = accessToken => {
+  return fetch("https://api.spotify.com/v1/me/player", {
+    method: "GET",
+    headers: {
+      "Authorization": "Bearer " + accessToken,
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+  });
+};
+
+export { login, callback, getLyrics, checkState };
