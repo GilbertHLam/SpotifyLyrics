@@ -14,6 +14,7 @@ const Lyrics = () => {
   const [lyrics, setLyrics] = useState("");
   const [spotifyState, setSpotifyState] = useState({});
   const [interval, setIntervalFunction] = useState();
+  const [hasError, setError] = useState(false);
 
   const { state, dispatch } = useStateValue();
 
@@ -26,7 +27,7 @@ const Lyrics = () => {
         1
       ) {
         localStorage.clear();
-        window.location.href = "https://localhost:3000";
+        window.location.href = "https://spotify.gilbertlam.me/";
       } else {
         dispatch({
           type: "setTokens",
@@ -36,7 +37,7 @@ const Lyrics = () => {
         });
       }
     } else if (!state.credentials) {
-      window.location.href = "https://localhost:3000";
+      window.location.href = "https://spotify.gilbertlam.me/";
     }
   }, []);
 
@@ -118,6 +119,11 @@ const Lyrics = () => {
         setSpotifyAnalysis(response.spotifyAnalysis);
         setWatsonAnalysis(response.watsonAnalysis);
         setIsLoading(false);
+      })
+      .catch(err => {
+        console.log(err);
+        setError(true);
+        setIsLoading(false);
       });
   }, [state.credentials, forceFetchLyrics]);
 
@@ -130,38 +136,49 @@ const Lyrics = () => {
     return formatted;
   };
 
-  return isLoading ? (
-    <div className="loading">
-      <LoadingWaves message="Retrieving lyrics..." />
-    </div>
-  ) : (
-    <>
-      <div className="wrapper">
-        <div
-          className="background-image"
-          style={{
-            background: `url(${spotifyState.image_url}) no-repeat center center fixed,linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)) `,
-            backgroundSize: "cover"
-          }}
-        ></div>
-        <div className="flex">
-          <div className="container">
-            <h1>{`${formatString(spotifyState.song_title)} - ${formatString(
-              spotifyState.artist
-            )}`}</h1>
-            <div
-              className="lyrics"
-              dangerouslySetInnerHTML={{ __html: lyrics }}
-            />
-          </div>
-          <div className="analysis">
-            <Analysis watson={watsonAnalysis} spotify={spotifyAnalysis} />
-          </div>
-        </div>
-        <Player isPlaying={spotifyState.is_playing} />
+  if (isLoading) {
+    return (
+      <div className="loading">
+        <LoadingWaves message="Retrieving lyrics..." />
       </div>
-    </>
-  );
+    );
+  } else if (hasError) {
+    return (
+      <div className="loading">
+        <LoadingWaves message="" />
+        <h1>Couldn't find lyrics for this song</h1>
+      </div>
+    );
+  } else {
+    return (
+      <>
+        <div className="wrapper">
+          <div
+            className="background-image"
+            style={{
+              background: `url(${spotifyState.image_url}) no-repeat center center fixed,linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)) `,
+              backgroundSize: "cover"
+            }}
+          ></div>
+          <div className="flex">
+            <div className="container">
+              <h1>{`${formatString(spotifyState.song_title)} - ${formatString(
+                spotifyState.artist
+              )}`}</h1>
+              <div
+                className="lyrics"
+                dangerouslySetInnerHTML={{ __html: lyrics }}
+              />
+            </div>
+            <div className="analysis">
+              <Analysis watson={watsonAnalysis} spotify={spotifyAnalysis} />
+            </div>
+          </div>
+          <Player isPlaying={spotifyState.is_playing} />
+        </div>
+      </>
+    );
+  }
 };
 
 export default Lyrics;
