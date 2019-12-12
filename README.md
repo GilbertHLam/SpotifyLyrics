@@ -6,3 +6,5 @@
 - Can skip, go back, play and pause songs
 - Will automatically update when the user's song changes
 
+# Limitations
+- Doesn't work if user is in private mode (Spotify API will not return any information about the current user playback)
