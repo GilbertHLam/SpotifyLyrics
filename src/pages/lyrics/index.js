@@ -114,6 +114,9 @@ const Lyrics = () => {
         return response.json();
       })
       .then(response => {
+        if(!response.spotify) {
+          setError(true);
+        }
         setLyrics(response.lyrics);
         setSpotifyState(response.spotify);
         setSpotifyAnalysis(response.spotifyAnalysis);
@@ -156,7 +159,7 @@ const Lyrics = () => {
           <div
             className="background-image"
             style={{
-              background: `url(${spotifyState.image_url}) no-repeat center center fixed,linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)) `,
+              background: spotifyState ? `url(${spotifyState.image_url}) no-repeat center center fixed,linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)) ` : null,
               backgroundSize: "cover"
             }}
           ></div>
