@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles.css";
-import apiBaseUrl from "../../utils/apiBaseUrl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlayCircle,
@@ -12,7 +11,7 @@ import { previousSong, nextSong, playPlayback, pausePlayback } from "../../utils
 import { useStateValue } from "../../state";
 
 const Player = props => {
-  const { state, dispatch } = useStateValue();
+  const { state } = useStateValue();
   const onPreviousClick = () => {
     previousSong(state.credentials.accessToken);
   };

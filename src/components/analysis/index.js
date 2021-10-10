@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles.css";
-import apiBaseUrl from "../../utils/apiBaseUrl";
 import { ResponsivePie } from "@nivo/pie";
 import { ResponsiveBar } from "@nivo/bar";
 

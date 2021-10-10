@@ -5,10 +5,6 @@ const randomNumber = () => {
   return Math.random() * 1.5 + 0.4;
 };
 
-const randomHeight = () => {
-  return Math.random() * 100 + 5;
-};
-
 const Waves = () => {
   return (
     <div className="music">

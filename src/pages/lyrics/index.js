@@ -4,13 +4,10 @@ import { getLyrics, checkState } from "../../utils/apiCalls";
 import { useStateValue } from "../../state";
 import LoadingWaves from "../../components/loadingWaves";
 import Player from "../../components/player";
-import Analysis from "../../components/analysis";
 
 const Lyrics = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [forceFetchLyrics, setForceFetchLyrics] = useState(0);
-  const [spotifyAnalysis, setSpotifyAnalysis] = useState({});
-  const [watsonAnalysis, setWatsonAnalysis] = useState({});
   const [lyrics, setLyrics] = useState("");
   const [spotifyState, setSpotifyState] = useState({});
   const [interval, setIntervalFunction] = useState();
@@ -174,7 +171,6 @@ const Lyrics = () => {
               />
             </div>
             <div className="analysis">
-              <Analysis watson={watsonAnalysis} spotify={spotifyAnalysis} />
             </div>
           </div>
           <Player isPlaying={spotifyState.is_playing} />
