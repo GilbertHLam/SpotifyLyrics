@@ -10,6 +10,13 @@
   text-align: center;
   background-attachment: fixed;
   padding-bottom: 7%;
+  width: "100%";
+}
+
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+  cursor: inherit;
 }
 
 .loading {
@@ -25,8 +32,8 @@
 .container {
   padding: 2% 0;
   text-align: center;
-  min-width: 50%;
   overflow: scroll;
+  width: 100%;
 }
 
 h1 {
@@ -78,7 +85,7 @@ body,
 }
 
 .analysis {
-  width: 50%;
+  display:none
 }
 
 @media (max-width: 900px) {

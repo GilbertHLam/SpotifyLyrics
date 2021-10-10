@@ -114,13 +114,13 @@ const Lyrics = () => {
         return response.json();
       })
       .then(response => {
-        if(!response.spotify) {
+        if(!response.songData) {
           setError(true);
+        } else {
+          setError(false);
         }
         setLyrics(response.lyrics);
-        setSpotifyState(response.spotify);
-        setSpotifyAnalysis(response.spotifyAnalysis);
-        setWatsonAnalysis(response.watsonAnalysis);
+        setSpotifyState(response.songData);
         setIsLoading(false);
       })
       .catch(err => {
